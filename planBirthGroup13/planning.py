@@ -5,7 +5,7 @@
 #62372 Guilherme Soares
 #62371 Duarte Soares
 
-
+import infoFromFiles
 
 def updateSchedule(doctors, requests, previousSched, nextSched):
 	"""
@@ -14,7 +14,7 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 	
 	Requires:
 	doctors is a list of lists with the structure as in the output of
-	infoFromFiles.readSkipersFile concerning the time of previous schedule;
+	infoFromFiles.readDoctorsFile concerning the time of previous schedule;
 	requests is a list of lists with the structure as in the output of 
 	infoFromFile.readRequestsFile concerning the current update time;
 	previousSched is a list of lists with the structure as in the output of
@@ -25,11 +25,11 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 	assigned according to the conditions indicated in the general specification
 	of the project (omitted here for the sake of readability).
 	"""
-
-
-
-
-
+	i = 0
+	while i < len(previousSched):
+		nextSched = previousSched[i] + 30
+		i +=1 
+	
 
 
 
