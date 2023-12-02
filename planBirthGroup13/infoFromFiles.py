@@ -26,11 +26,11 @@ def readFile(fileName):
     """
     fileData = open(fileName, "r")
     newList = []
-    fileType = ""
+    fileType = []
     i = 0
     for line in fileData:
         if i == 6:
-            fileType = line.rstrip()
+            fileType.append(line.rstrip())
         if i > 6 and len(line.split()) != 0:
             newLine = line.rstrip().split(", ")
             finalLine = []
@@ -62,11 +62,11 @@ def readDoctorsFile(fileName):
     following the order provided in the lines of the file.
     """
     doctorsData,fileType = readFile(fileName)
-    if fileType != "Doctors:":
+    if fileType[0] != "Doctors:":
         raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
-    sortedDoctors = sorted(doctorsData, key=lambda x: (int(x[2][0]),int(x[2][1]), -int(x[1])))
+    sortedDoctors = sorted(doctorsData, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
 
-    return doctorsData
+    return doctorsData, fileType[1]
 
 def readRequestsFile(fileName):
     """
@@ -80,7 +80,7 @@ def readRequestsFile(fileName):
     following the order provided in the lines of the file.
     """
     requestsData,fileType = readFile(fileName)
-    if fileType != "Mothers:":
+    if fileType[0] != "Mothers:":
         raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
     newList = []
     for item in requestsData:
@@ -98,8 +98,8 @@ def readRequestsFile(fileName):
         else:
             item[MOTH_IMP_IDK] = 3
         newList.append(item)
-    requestsData = sorted(newList,key=lambda x: (-int(x[3]),-int(x[2]),-int(x[1]),x[0]))
-    return requestsData
+    requestsData = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
+    return requestsData, fileType[1]
 
 def readScheduleFile(fileName):
     """
@@ -113,7 +113,7 @@ def readScheduleFile(fileName):
     following the order provided in the lines of the file.
     """
     scheduleData,fileType = readFile(fileName)
-    if fileType != "Schedule:":
+    if fileType[0] != "Schedule:":
         raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
 
-    return scheduleData
+    return scheduleData, fileType[1]

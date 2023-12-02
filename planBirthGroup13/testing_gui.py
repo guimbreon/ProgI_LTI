@@ -1,34 +1,35 @@
 import infoFromFiles
+from constants import *
 #FILES
 #DOCTORS
 #fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/doctors14h00.txt"
 #fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet4/doctors18h00.txt"
 #REQUESTS
 #fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/requests14h30.txt"
-fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet1/requests10h30.txt"
+#fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet1/requests10h30.txt"
 #SCHEDULE
-#fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/schedule14h00.txt"
+fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/schedule14h00.txt"
 
 
 #TESTING
 #print(infoFromFiles.readDoctorsFile(fileName))
-print(infoFromFiles.readRequestsFile(fileName))
-#print(infoFromFiles.readScheduleFile(fileName))
-
-
+#print(infoFromFiles.readRequestsFile(fileName))
+print(infoFromFiles.readScheduleFile(fileName))
 
 """
+
 list = [["a",7],["b",12],["d",5],["c",4],["k",12],["d",12]]
 
 print(sorted(list,key=lambda x: (x[1],x[0])))
-
+"""
+"""
 my_list = [['Guilherme Gaspar', '2', [14, 20], '40', [39, 50]],
            ['Horácio Horta', '3', [15, 20], '120', [7, 20]],
            ['Ildefonso Inácio', '2', [15, 27], '40', [39, 50]],
            ['José Justo', '2', [9, 20], '40', [15, 0]]]
 
 # Sort the list based on the third element and then the second element of each sublist
-sorted_list = sorted(my_list, key=lambda x: (int(x[2][0]),int(x[2][1]), -int(x[1])))
+sorted_list = sorted(my_list, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
 
 print(sorted_list)
 """
@@ -58,6 +59,6 @@ for item in myList:
         item[MOTH_IMP_IDK] = 3
     newList.append(item)
 
-sortedList = sorted(newList,key=lambda x: (-int(x[3]),-int(x[2]),-int(x[1]),x[0]))
+sortedList = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
 print(sortedList)
 """

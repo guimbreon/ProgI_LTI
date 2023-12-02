@@ -25,7 +25,7 @@ def writeScheduleFile(sched, header, fileName):
     the lines in this file keeps the ordering top to bottom of 
     the assistances as ordered head to tail in sched.
     """
-
+    
 
 
 def writeDoctorsFile(doctors, header, fileName):
