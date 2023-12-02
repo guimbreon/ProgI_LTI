@@ -22,16 +22,19 @@ def readFile(fileName):
     in the general specification (omitted here for the sake of readability).
     Ensures:
     list of lists where each list corresponds to the Data from each line in the file located at fileName
-    fileType which represents the type of file it's reading.
+    fileInfo which represents the type of file it's reading.
     """
     fileData = open(fileName, "r")
     newList = []
-    fileType = []
-    i = 0
+    fileInfo = []
+    header = []
+    lineNum = 0
     for line in fileData:
-        if i == 6:
-            fileType.append(line.rstrip())
-        if i > 6 and len(line.split()) != 0:
+        if lineNum <= 6:
+            header.append(line)
+        if lineNum == 6:
+            fileInfo.append(line.rstrip())
+        if lineNum > 6 and len(line.split()) != 0:
             newLine = line.rstrip().split(", ")
             finalLine = []
             for item in newLine:
@@ -43,9 +46,10 @@ def readFile(fileName):
                 else:
                     finalLine.append(item)
             newList.append(finalLine)
-        i += 1
+        lineNum += 1
     fileData.close()
-    return newList, fileType
+    fileInfo.append(header)
+    return newList, fileInfo
     
 
 def readDoctorsFile(fileName):
@@ -61,12 +65,12 @@ def readDoctorsFile(fileName):
     the file fileName (with all the info pieces belonging to that doctor),
     following the order provided in the lines of the file.
     """
-    doctorsData,fileType = readFile(fileName)
-    if fileType[0] != "Doctors:":
+    doctorsData,fileInfo = readFile(fileName)
+    if fileInfo[FILETYPE] != "Doctors:":
         raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
     sortedDoctors = sorted(doctorsData, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
 
-    return doctorsData, fileType[1]
+    return doctorsData, fileInfo
 
 def readRequestsFile(fileName):
     """
@@ -79,8 +83,8 @@ def readRequestsFile(fileName):
     the file fileName (with all the info pieces belonging to that doctor),
     following the order provided in the lines of the file.
     """
-    requestsData,fileType = readFile(fileName)
-    if fileType[0] != "Mothers:":
+    requestsData,fileInfo = readFile(fileName)
+    if fileInfo[FILETYPE] != "Mothers:":
         raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
     newList = []
     for item in requestsData:
@@ -99,7 +103,7 @@ def readRequestsFile(fileName):
             item[MOTH_IMP_IDK] = 3
         newList.append(item)
     requestsData = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
-    return requestsData, fileType[1]
+    return requestsData, fileInfo
 
 def readScheduleFile(fileName):
     """
@@ -112,8 +116,8 @@ def readScheduleFile(fileName):
     the file fileName (with all the info pieces belonging to that doctor),
     following the order provided in the lines of the file.
     """
-    scheduleData,fileType = readFile(fileName)
-    if fileType[0] != "Schedule:":
+    scheduleData,fileInfo = readFile(fileName)
+    if fileInfo[FILETYPE] != "Schedule:":
         raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
 
-    return scheduleData, fileType[1]
+    return scheduleData, fileInfo

@@ -1,20 +1,24 @@
 import infoFromFiles
+import infoToFiles
 from constants import *
 #FILES
 #DOCTORS
-#fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/doctors14h00.txt"
+fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/doctors14h00.txt"
 #fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet4/doctors18h00.txt"
 #REQUESTS
-#fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/requests14h30.txt"
+fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/requests14h30.txt"
 #fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet1/requests10h30.txt"
 #SCHEDULE
-fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/schedule14h00.txt"
-
+fileNameSchedule = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/schedule14h00.txt"
 
 #TESTING
-#print(infoFromFiles.readDoctorsFile(fileName))
-#print(infoFromFiles.readRequestsFile(fileName))
-print(infoFromFiles.readScheduleFile(fileName))
+doctorsData,doctorsInfo = infoFromFiles.readDoctorsFile(fileNameDoctors)
+requestsData, requestsInfo = infoFromFiles.readRequestsFile(fileNameRequests)
+scheduleData,scheduleInfo = infoFromFiles.readScheduleFile(fileNameSchedule)
+#infoFromFIles
+#print(doctorsData)
+#print(requestsData)
+#print(scheduleData)
 
 """
 
@@ -62,3 +66,7 @@ for item in myList:
 sortedList = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
 print(sortedList)
 """
+header = infoToFiles.headerWork(doctorsInfo[1])
+print(header)
+#sched = ["i","dont","have","it"]
+#infoToFiles.writeScheduleFile(sched,header)

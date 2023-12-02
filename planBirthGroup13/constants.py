@@ -14,6 +14,15 @@
 # code clean and legible
 
 
+#for the dateTime module:
+DAY = 0
+MONTH = 1
+YEAR = 2
+
+# In a fileInfo:
+FILETYPE = 0
+FILEHEADER = 1
+
 
 # Value for weekly pause in the output schedule
 WKL_PAUSE = "weekly pause"
@@ -32,12 +41,15 @@ DOCT_CAT_IDX = 1
 DOCT_TIME_IDK = 2
 DOCT_MINS_IDX = 3
 DOCT_TOTALTIME_IDX = 4
+
+
 # In a mother's list:
 # Index of the element with the mother's name
 MOTH_NAME_IDX = 0
 MOTH_AGE_IDK = 1
 MOTH_WRIST_IDK = 2
 MOTH_IMP_IDK = 3
+
 
 # In a schedule's list:
 # Index of the element with the schedule's name

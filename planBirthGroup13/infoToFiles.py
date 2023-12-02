@@ -4,8 +4,30 @@
 # Grupo 13
 #62372 Guilherme Soares
 #62371 Duarte Soares
+import dateTime
 
-
+def headerWork(header):
+    lineNum = 0
+    nextDay = False
+    headerString = ""
+    for line in header:
+        if lineNum == 3:
+            hour = dateTime.hourToInt(line)
+            min = dateTime.minutesToInt(line) + 30
+            if min == 60:
+                hour = hour + 1
+                min = 0
+            if hour > 24:
+                hour = 1
+                nextDay = True
+            headerString += dateTime.intToTime(hour,min) + "\n"
+        elif nextDay and lineNum == 5:
+            headerString += dateTime.nextDay(line)
+        else:        
+            headerString += line
+        lineNum += 1
+    return headerString
+    
 
 
 def writeScheduleFile(sched, header, fileName):
