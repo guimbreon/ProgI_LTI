@@ -11,6 +11,13 @@ fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets
 #SCHEDULE
 fileNameSchedule = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/schedule14h00.txt"
 
+#TO REDIRECT TO ANOTHER HOSPITAL
+#fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/doctors16h00.txt"
+#fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/requests16h30.txt"
+#fileNameSchedule = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/schedule16h00.txt"
+
+
+
 #TESTING
 doctorsData,doctorsInfo = infoFromFiles.readDoctorsFile(fileNameDoctors)
 requestsData, requestsInfo = infoFromFiles.readRequestsFile(fileNameRequests)
@@ -75,13 +82,25 @@ print(sortedList)
 """
 TRYING TO DO PLANNNING
 """
-"""
+
 import planning
+
+import dateTime
 doctorsData #dados medico
 requestsData #dados maes
 scheduleData #dados antigos
-planning.updateSchedule(doctorsData,requestsData,scheduleData)"""
+print("original",doctorsData)
+#print(requestsData)
+
+timeSchedule = [dateTime.hourToInt(scheduleInfo[1][3].rstrip()),dateTime.minutesToInt(scheduleInfo[1][3].rstrip())]
+
+FINALSHITithink = planning.updateSchedule(doctorsData,requestsData,scheduleData,timeSchedule)
+
+print(FINALSHITithink)
+
+"""
 
 import dateTime
 medico = ["gui","3",[14,40],'220',[39,20]]
 print(dateTime.add20Min(medico))
+"""

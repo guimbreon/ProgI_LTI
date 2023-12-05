@@ -5,6 +5,7 @@
 # 62372 Guilherme Soares
 # 62371 Duarte Soares
 from constants import * 
+import copy
 def nextDay(date):
     """
     It skips to the next day in the given string
@@ -83,6 +84,23 @@ def intToTime(hour, minutes):
     return h + "h" + m
 
 
+
+
+def add30Min(nextSched):
+    """
+    Adds 30 minutes to the nextSched.
+    
+    Requires:
+    - nextSched (lst) : a lst cointaing the time of the previous sched
+    Ensures:
+    that time plus 30minus for the nextSched
+    """
+    nextSched[1] += 30
+    if nextSched[1] >= 60:
+        nextSched[0] +=1
+        nextSched[1] = 0 
+        
+    return nextSched
 def add20Min(doctor):
     """
     Add 20 minutes the doctor list that will be given.
@@ -92,13 +110,26 @@ def add20Min(doctor):
     Ensures:
     - new doctor list with + 20 minutes
     """
+    copieddoctor = copy.deepcopy(doctor)
     doctor[DOCT_MINS_IDX] = str(int(doctor[DOCT_MINS_IDX]) + 20)
+
     if int(doctor[DOCT_MINS_IDX]) >= 240 and int(doctor[DOCT_MINS_IDX]) < 260: #this way its only the first time
         doctor[DOCT_TOTALTIME_IDX][0] += 1
     doctor[DOCT_TIME_IDK][1] += 20
-    if doctor[DOCT_TIME_IDK][1] >= 60:
+
+    while doctor[DOCT_TIME_IDK][1] >= 60:
         doctor[DOCT_TIME_IDK][0] += 1
-        doctor[DOCT_TIME_IDK][1] = 0
+        doctor[DOCT_TIME_IDK][1] -= 60
+
+    if doctor[DOCT_TIME_IDK][0] >= 20:
+        return copieddoctor
+    
+    doctor[DOCT_TOTALTIME_IDX][1] += 20
+
+    while doctor[DOCT_TOTALTIME_IDX][1] >= 60:          
+        doctor[DOCT_TOTALTIME_IDX][0] += 1
+        doctor[DOCT_TOTALTIME_IDX][1] -= 60
+
     if doctor[DOCT_TOTALTIME_IDX][0] >= 40:
-        doctor[DOCT_TOTALTIME_IDX] = "weekly leave"
+        doctor[DOCT_TIME_IDK] = "weekly leave"
     return doctor

@@ -60,7 +60,20 @@ def sortDoctor(doctors):
     Ensures:
     New doctors list but now is sorted the given arguments.
     """
-    return sorted(doctors, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
+    finalDoctors = []
+    doneWorking = []
+    working = []
+    for doctor in doctors:
+        if doctor[DOCT_TIME_IDK] == "weekly leave":
+            doneWorking.append(doctor)
+        else:
+            working.append(doctor)
+
+    finalDoctors = sorted(working, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
+    if len(doneWorking) > 0:
+        doneWorking = sorted(doneWorking, key = lambda doctor: (-int(doctor[DOCT_CAT_IDX]),int(doctor[DOCT_MINS_IDX]) , int(doctor[DOCT_TOTALTIME_IDX][0]), int(doctor[DOCT_TOTALTIME_IDX][1]), doctor[DOCT_NAME_IDX]))
+        finalDoctors += doneWorking
+    return finalDoctors
 
 def readDoctorsFile(fileName):
     """
@@ -81,20 +94,16 @@ def readDoctorsFile(fileName):
     doctorsData = sortDoctor(doctorsData)
     return doctorsData, fileInfo
 
-def readRequestsFile(fileName):
+def sortRequests(requestsData):
     """
-    Reads a file with a list of requested assistances with a given file name into a collection.
-    fileName is str with the name of a .txt file containing
-    a list of requests organized as in the examples provided in
-    the general specification (omitted here for the sake of readability).
+    Sort a mothers in a given list.
+
     Requires:
-    list of lists where each list corresponds to a Mothers listed in
-    the file fileName (with all the info pieces belonging to that doctor),
-    following the order provided in the lines of the file.
+    - requests (lst)(lst) : contains a list of lists where each list  corresponds to a mother.
+    Ensures:
+    New requests list but now is sorted the given arguments.
+
     """
-    requestsData,fileInfo = readFile(fileName)
-    if fileInfo[FILETYPE] != "Mothers:":
-        raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
     newList = []
     for item in requestsData:
         if item[MOTH_WRIST_IDK] == "green":
@@ -112,6 +121,23 @@ def readRequestsFile(fileName):
             item[MOTH_IMP_IDK] = 3
         newList.append(item)
     requestsData = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
+    return requestsData
+
+def readRequestsFile(fileName):
+    """
+    Reads a file with a list of requested assistances with a given file name into a collection.
+    fileName is str with the name of a .txt file containing
+    a list of requests organized as in the examples provided in
+    the general specification (omitted here for the sake of readability).
+    Requires:
+    list of lists where each list corresponds to a Mothers listed in
+    the file fileName (with all the info pieces belonging to that doctor),
+    following the order provided in the lines of the file.
+    """
+    requestsData,fileInfo = readFile(fileName)
+    if fileInfo[FILETYPE] != "Mothers:":
+        raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
+    requestsData = sortRequests(requestsData)
     return requestsData, fileInfo
 
 def readScheduleFile(fileName):

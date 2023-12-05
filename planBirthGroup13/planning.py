@@ -7,18 +7,10 @@
 
 from constants import *
 import copy
+import infoFromFiles
+import dateTime
 
-def toTheEnd(doctors):
-	"""
-	Places the doctor that was assigned to the end of the list.
-
-	Requires:
-	doctors is a list of lists with the structure as in the output of
-	infoFromFiles.readDoctorsFile concerning the time of previous schedule;
-	Ensures:
-	new doctors list with the medic that did the atendance on the end list
-	"""
-def updateSchedule(doctors, requests, previousSched, nextSched = "nao percebi para que serve isto"):
+def updateSchedule(doctors, requests, previousSched, nextSched):
 	"""
     Update birth assistance schedule assigning the given birth assistance requested
     to the given doctors, taking into account a previous schedule.
@@ -36,4 +28,3 @@ def updateSchedule(doctors, requests, previousSched, nextSched = "nao percebi pa
 	assigned according to the conditions indicated in the general specification
 	of the project (omitted here for the sake of readability).
 	"""
-
