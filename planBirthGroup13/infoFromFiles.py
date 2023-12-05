@@ -51,6 +51,16 @@ def readFile(fileName):
     fileInfo.append(header)
     return newList, fileInfo
     
+def sortDoctor(doctors):
+    """
+    Sort a doctors given list.
+
+    Requires:
+    - doctors (lst)(lst) : contains a list of lists where each list  corresponds to a doctor.
+    Ensures:
+    New doctors list but now is sorted the given arguments.
+    """
+    return sorted(doctors, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
 
 def readDoctorsFile(fileName):
     """
@@ -68,8 +78,7 @@ def readDoctorsFile(fileName):
     doctorsData,fileInfo = readFile(fileName)
     if fileInfo[FILETYPE] != "Doctors:":
         raise IOError(f"\n\nFile head error: scope inconsistency between name and header in file {fileName}.")
-    sortedDoctors = sorted(doctorsData, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
-
+    doctorsData = sortDoctor(doctorsData)
     return doctorsData, fileInfo
 
 def readRequestsFile(fileName):

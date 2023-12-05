@@ -83,11 +83,22 @@ def intToTime(hour, minutes):
     return h + "h" + m
 
 
+def add20Min(doctor):
+    """
+    Add 20 minutes the doctor list that will be given.
 
-
-
-
-
-
-
-
+    Requires
+    - doctor (lst): representing a doctor
+    Ensures:
+    - new doctor list with + 20 minutes
+    """
+    doctor[DOCT_MINS_IDX] = str(int(doctor[DOCT_MINS_IDX]) + 20)
+    if int(doctor[DOCT_MINS_IDX]) >= 240 and int(doctor[DOCT_MINS_IDX]) < 260: #this way its only the first time
+        doctor[DOCT_TOTALTIME_IDX][0] += 1
+    doctor[DOCT_TIME_IDK][1] += 20
+    if doctor[DOCT_TIME_IDK][1] >= 60:
+        doctor[DOCT_TIME_IDK][0] += 1
+        doctor[DOCT_TIME_IDK][1] = 0
+    if doctor[DOCT_TOTALTIME_IDX][0] >= 40:
+        doctor[DOCT_TOTALTIME_IDX] = "weekly leave"
+    return doctor

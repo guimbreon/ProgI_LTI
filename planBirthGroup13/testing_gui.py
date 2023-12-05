@@ -66,7 +66,22 @@ for item in myList:
 sortedList = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
 print(sortedList)
 """
-header = infoToFiles.headerWork(doctorsInfo[1])
-print(header)
+#header = infoToFiles.headerWork(doctorsInfo[1])
+#print(header)
 #sched = ["i","dont","have","it"]
 #infoToFiles.writeScheduleFile(sched,header)
+
+
+"""
+TRYING TO DO PLANNNING
+"""
+"""
+import planning
+doctorsData #dados medico
+requestsData #dados maes
+scheduleData #dados antigos
+planning.updateSchedule(doctorsData,requestsData,scheduleData)"""
+
+import dateTime
+medico = ["gui","3",[14,40],'220',[39,20]]
+print(dateTime.add20Min(medico))
