@@ -4,7 +4,11 @@
 # Grupo 13
 #62372 Guilherme Soares
 #62371 Duarte Soares
-
+import infoFromFiles
+import infoToFiles
+import dateTime
+import planning
+import copy
 
 
 
@@ -30,8 +34,21 @@ def plan(doctorsFileName, scheduleFileName, requestsFileName):
     scheduleFileName and requestsFileName, and are written in the same directory
     of the latter.
     """
+    doctorsData, doctorsInfo = infoFromFiles.readDoctorsFile(doctorsFileName)
+    requestsData, requestsInfo = infoFromFiles.readRequestsFile(requestsFileName)
+    scheduleData, scheduleInfo = infoFromFiles.readScheduleFile(scheduleFileName)
+
+    timeSchedule = [dateTime.hourToInt(scheduleInfo[1][3].rstrip()),dateTime.minutesToInt(scheduleInfo[1][3].rstrip())]
+    newRequests, newDoctors = planning.updateSchedule(doctorsData, requestsData, scheduleData, timeSchedule)
     
+    timeDoctor = [dateTime.hourToInt(doctorsInfo[1][3].rstrip()),dateTime.minutesToInt(doctorsInfo[1][3].rstrip())]
+    nextDoctTime = dateTime.add30Min(copy.deepcopy(timeDoctor))
 
+    headerDoct = infoToFiles.headerWork(doctorsInfo[1])
+    doctorsFileName = doctorsFileName.replace(f"doctors{doctorsInfo[1][3].rstrip()}.txt","")
+    infoToFiles.writeDoctorsFile(newDoctors, headerDoct, f"{doctorsFileName}doctors{dateTime.intToTime(nextDoctTime[0],nextDoctTime[1])}.txt")
 
-        
-
+    nextSchedTime = dateTime.add30Min(copy.deepcopy(timeSchedule))
+    headerSched = infoToFiles.headerWork(requestsInfo[1])
+    scheduleFileName = scheduleFileName.replace(f"schedule{scheduleInfo[1][3].rstrip()}.txt","")
+    infoToFiles.writeScheduleFile(newRequests, headerSched, f"{scheduleFileName}schedule{dateTime.intToTime(nextSchedTime[0],nextSchedTime[1])}.txt")

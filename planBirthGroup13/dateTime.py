@@ -72,17 +72,19 @@ def intToTime(hour, minutes):
     -str: representing the time in the format "HHhMM".
 
     """
-    h = str(hour)
-    m = str(minutes)
+    if hour != "w":
+        h = str(hour)
+        m = str(minutes)
 
-    if hour < 10:
-        h = "0" + h
+        if hour < 10:
+            h = "0" + h
 
-    if minutes < 10:
-        m = "0" + m
+        if minutes < 10:
+            m = "0" + m
 
-    return h + "h" + m
-
+        return h + "h" + m
+    else:
+        return "weekly leave"
 
 
 

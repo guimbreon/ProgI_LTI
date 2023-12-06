@@ -24,7 +24,7 @@ requestsData, requestsInfo = infoFromFiles.readRequestsFile(fileNameRequests)
 scheduleData,scheduleInfo = infoFromFiles.readScheduleFile(fileNameSchedule)
 #infoFromFIles
 #print(doctorsData)
-#print(requestsData)
+print(requestsData)
 #print(scheduleData)
 
 """
@@ -73,16 +73,12 @@ for item in myList:
 sortedList = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
 print(sortedList)
 """
-#header = infoToFiles.headerWork(doctorsInfo[1])
-#print(header)
-#sched = ["i","dont","have","it"]
-#infoToFiles.writeScheduleFile(sched,header)
+
 
 
 """
 TRYING TO DO PLANNNING
 """
-
 import planning
 
 import dateTime
@@ -94,9 +90,11 @@ print("original",doctorsData)
 
 timeSchedule = [dateTime.hourToInt(scheduleInfo[1][3].rstrip()),dateTime.minutesToInt(scheduleInfo[1][3].rstrip())]
 
-FINALSHITithink = planning.updateSchedule(doctorsData,requestsData,scheduleData,timeSchedule)
 
-print(FINALSHITithink)
+planningRequest,plannningDoctors = planning.updateSchedule(doctorsData,requestsData,scheduleData,
+	dateTime.add30Min(timeSchedule))
+
+print(planningRequest)
 
 """
 
@@ -104,3 +102,13 @@ import dateTime
 medico = ["gui","3",[14,40],'220',[39,20]]
 print(dateTime.add20Min(medico))
 """
+
+"""
+TRYING TO DO infoToFiles
+"""
+header = infoToFiles.headerWork(doctorsInfo[1])
+sched = ["i","dont","have","it"]
+fileOutputFile = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/poh"
+#infoToFiles.writeScheduleFile(planningRequest, header, fileOutputFile)
+infoToFiles.writeDoctorsFile(plannningDoctors, header, fileOutputFile)
+
