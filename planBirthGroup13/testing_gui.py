@@ -12,10 +12,9 @@ fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets
 fileNameSchedule = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/schedule14h00.txt"
 
 #TO REDIRECT TO ANOTHER HOSPITAL
-#fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/doctors16h00.txt"
-#fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/requests16h30.txt"
-#fileNameSchedule = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/schedule16h00.txt"
-
+fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/doctors16h00.txt"
+fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/requests16h30.txt"
+fileNameSchedule = "/home/guimbreon/Desktop/Trabalho/testSets_v1/testSet3/schedule16h00.txt"
 
 
 #TESTING
@@ -24,7 +23,7 @@ requestsData, requestsInfo = infoFromFiles.readRequestsFile(fileNameRequests)
 scheduleData,scheduleInfo = infoFromFiles.readScheduleFile(fileNameSchedule)
 #infoFromFIles
 #print(doctorsData)
-print(requestsData)
+#print(requestsData)
 #print(scheduleData)
 
 """
@@ -44,6 +43,7 @@ sorted_list = sorted(my_list, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT
 
 print(sorted_list)
 """
+
 """
 import copy
 from constants import *
@@ -74,8 +74,6 @@ sortedList = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRI
 print(sortedList)
 """
 
-
-
 """
 TRYING TO DO PLANNNING
 """
@@ -85,7 +83,6 @@ import dateTime
 doctorsData #dados medico
 requestsData #dados maes
 scheduleData #dados antigos
-print("original",doctorsData)
 #print(requestsData)
 
 timeSchedule = [dateTime.hourToInt(scheduleInfo[1][3].rstrip()),dateTime.minutesToInt(scheduleInfo[1][3].rstrip())]
@@ -94,7 +91,7 @@ timeSchedule = [dateTime.hourToInt(scheduleInfo[1][3].rstrip()),dateTime.minutes
 planningRequest,plannningDoctors = planning.updateSchedule(doctorsData,requestsData,scheduleData,
 	dateTime.add30Min(timeSchedule))
 
-print(planningRequest)
+#print(planningRequest)
 
 """
 
@@ -105,10 +102,14 @@ print(dateTime.add20Min(medico))
 
 """
 TRYING TO DO infoToFiles
-"""
+
 header = infoToFiles.headerWork(doctorsInfo[1])
 sched = ["i","dont","have","it"]
 fileOutputFile = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/poh"
 #infoToFiles.writeScheduleFile(planningRequest, header, fileOutputFile)
 infoToFiles.writeDoctorsFile(plannningDoctors, header, fileOutputFile)
 
+"""
+list = [[[16, 50], 'Maria Martins', 'Manuel Machado'], [[16, 30], 'Aula Pinheiro', 'Manuel Machado'], [[16, 40], 'Tânia Tristão', 'Orlando Oliveira'], [[17, 0], 'Rafaela Robalo', 'Orlando Oliveira'], [[16, 30], 'Sandra Silva', 'redirected to other network']]
+
+print(planning.sortSchedule(list))

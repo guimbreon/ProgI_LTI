@@ -9,6 +9,8 @@ from constants import *
 import copy
 import infoFromFiles
 import dateTime
+def sortSchedule(schedule):
+	return sorted(schedule, key = lambda sched: (sched[0][0],sched[0][1]))
 
 def updateSchedule(doctors, requests, previousSched, nextSched):
 	"""
@@ -28,9 +30,11 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 	assigned according to the conditions indicated in the general specification
 	of the project (omitted here for the sake of readability).
 	"""
-	newMotherList = []
 	newRequests = []
-	schedule = nextSched
+	for sched in previousSched:
+		if sched[0][0] == nextSched[0] and sched[0][1] >= nextSched[1] or sched[0][0] > nextSched[0]:
+			newRequests.append(sched)
+	schedule = copy.deepcopy(nextSched)
 	for mother in requests:
 		docNum = 0
 		isItNotTreated = True
@@ -54,7 +58,7 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 		if isItNotTreated:
 			timeBegin = nextSched
 			newRequests.append([timeBegin,mother[MOTH_NAME_IDX],"redirected to other network"])
-	
-	doctors = infoFromFiles.sortDoctor(doctors)
+	newRequests = sortSchedule(newRequests)
+	doctors = sorted(doctors, key = lambda doctor:(doctor[DOCT_NAME_IDX]))
 	
 	return newRequests, doctors

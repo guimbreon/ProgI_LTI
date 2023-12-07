@@ -9,8 +9,14 @@ import infoToFiles
 import dateTime
 import planning
 import copy
+import sys
+print(str(sys.argv))
+"""
+COLOCAR AQUI O ARGV E ASSIM
 
-
+TEMOS Q COLOCAR NO FIM DO FICHEIRO TIPO
+updateSchedule(argv[1],argv[2]) OU SEJA LÁ CM É UK
+"""
 
 def plan(doctorsFileName, scheduleFileName, requestsFileName):
     """
@@ -52,3 +58,11 @@ def plan(doctorsFileName, scheduleFileName, requestsFileName):
     headerSched = infoToFiles.headerWork(requestsInfo[1])
     scheduleFileName = scheduleFileName.replace(f"schedule{scheduleInfo[1][3].rstrip()}.txt","")
     infoToFiles.writeScheduleFile(newRequests, headerSched, f"{scheduleFileName}schedule{dateTime.intToTime(nextSchedTime[0],nextSchedTime[1])}.txt")
+
+#plan(sys.argv[1],sys.argv[2],sys.argv[3])
+
+
+fileNameDoctors = "/home/guimbreon/Desktop/Trabalho/testeMeu/doctors16h00.txt"
+fileNameRequests = "/home/guimbreon/Desktop/Trabalho/testeMeu/requests16h30.txt"
+fileNameSchedule = "/home/guimbreon/Desktop/Trabalho/testeMeu/schedule16h00.txt"
+plan(fileNameDoctors,fileNameSchedule,fileNameRequests)

@@ -88,21 +88,22 @@ def intToTime(hour, minutes):
 
 
 
-def add30Min(nextSched):
+def add30Min(oldSched):
     """
-    Adds 30 minutes to the nextSched.
+    Adds 30 minutes to the oldSched.
     
     Requires:
-    - nextSched (lst) : a lst cointaing the time of the previous sched
+    - oldSched (lst) : a lst cointaing the time of the previous sched
     Ensures:
-    that time plus 30minus for the nextSched
+    The given time plus 30minus for the oldSched
     """
-    nextSched[1] += 30
-    if nextSched[1] >= 60:
-        nextSched[0] +=1
-        nextSched[1] = 0 
+    oldSched[1] += 30
+    if oldSched[1] >= 60:
+        oldSched[0] +=1
+        oldSched[1] = 0 
         
-    return nextSched
+    return oldSched
+
 def add20Min(doctor):
     """
     Add 20 minutes the doctor list that will be given.
