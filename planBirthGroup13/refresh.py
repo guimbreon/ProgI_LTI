@@ -10,7 +10,6 @@ import dateTime
 import planning
 import copy
 import sys
-print(str(sys.argv))
 """
 COLOCAR AQUI O ARGV E ASSIM
 

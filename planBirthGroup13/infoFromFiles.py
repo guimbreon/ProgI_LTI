@@ -6,11 +6,7 @@
 #62371 Duarte Soares
 
 
-"""
-Nas funções readDoctorsFile, readRequestsFile e readScheduleFile, todas fazem o mesmo
-então poderiamos substituir pela função readFile?
-NÃO POIS TEMOS QUE LEVANTAR O ERROR(PAGINA) DA PAGINA 9.
-"""
+
 from constants import *
 import dateTime
 def readFile(fileName):

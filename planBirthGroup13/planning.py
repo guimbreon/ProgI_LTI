@@ -24,6 +24,7 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 	infoFromFile.readRequestsFile concerning the current update time;
 	previousSched is a list of lists with the structure as in the output of
 	infoFromFiles.readScheduleFile concerning the previous update time;
+	nextTime is a string in the format HHhMM with the time of the next schedule
 	Ensures:
 	a list of birth assistances, representing the schedule updated at
 	the current update time (= previous update time + 30 minutes),
