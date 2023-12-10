@@ -34,6 +34,7 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 	newRequests = []
 	for sched in previousSched:
 		if sched[0][0] == nextSched[0] and sched[0][1] >= nextSched[1] or sched[0][0] > nextSched[0]:
+			
 			newRequests.append(sched)
 	schedule = copy.deepcopy(nextSched)
 	for mother in requests:
@@ -50,7 +51,9 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 						isItNotTreated = False
 						timeBegin = copy.deepcopy(medic[DOCT_TIME_IDK])
 						medicName = copy.deepcopy(medic[DOCT_NAME_IDX])
+						print(medic)
 						medic = dateTime.add20Min(medic)
+						print(medic)
 						doctors.pop(docNum)
 						doctors.append(medic)
 						doctors = infoFromFiles.sortDoctor(doctors)
@@ -59,6 +62,7 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 		if isItNotTreated:
 			timeBegin = nextSched
 			newRequests.append([timeBegin,mother[MOTH_NAME_IDX],"redirected to other network"])
+		
 	newRequests = sortSchedule(newRequests)
 	doctors = sorted(doctors, key = lambda doctor:(doctor[DOCT_NAME_IDX]))
 	

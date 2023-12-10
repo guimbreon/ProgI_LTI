@@ -118,6 +118,7 @@ def add20Min(doctor):
 
     if int(doctor[DOCT_MINS_IDX]) >= 240 and int(doctor[DOCT_MINS_IDX]) < 260: #this way its only the first time
         doctor[DOCT_TOTALTIME_IDX][0] += 1
+        doctor[DOCT_TIME_IDK][0] += 1
     doctor[DOCT_TIME_IDK][1] += 20
 
     while doctor[DOCT_TIME_IDK][1] >= 60:

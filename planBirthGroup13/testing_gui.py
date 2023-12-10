@@ -3,18 +3,18 @@ import infoToFiles
 from constants import *
 #FILES
 #DOCTORS
-fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/doctors14h00.txt"
+fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testMEu/testSet1/doctors10h00.txt"
 #fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet4/doctors18h00.txt"
 #REQUESTS
-fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/requests14h30.txt"
+fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testMEu/testSet1/requests10h30.txt"
 #fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet1/requests10h30.txt"
 #SCHEDULE
-fileNameSchedule = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet2/schedule14h00.txt"
+fileNameSchedule = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testMEu/testSet1/schedule10h00.txt"
 
 #TO REDIRECT TO ANOTHER HOSPITAL
-fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/doctors16h00.txt"
-fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/requests16h30.txt"
-fileNameSchedule = "/home/guimbreon/Desktop/Trabalho/testSets_v1/testSet3/schedule16h00.txt"
+#fileNameDoctors = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/doctors16h00.txt"
+#fileNameRequests = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet3/requests16h30.txt"
+#fileNameSchedule = "/home/guimbreon/Desktop/Trabalho/testSets_v1/testSet3/schedule16h00.txt"
 
 
 #TESTING

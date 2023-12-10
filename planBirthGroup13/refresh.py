@@ -44,7 +44,8 @@ def plan(doctorsFileName, scheduleFileName, requestsFileName):
     scheduleData, scheduleInfo = infoFromFiles.readScheduleFile(scheduleFileName)
 
     timeSchedule = [dateTime.hourToInt(scheduleInfo[1][3].rstrip()),dateTime.minutesToInt(scheduleInfo[1][3].rstrip())]
-    newRequests, newDoctors = planning.updateSchedule(doctorsData, requestsData, scheduleData, timeSchedule)
+    nextSchedTime = dateTime.add30Min(copy.deepcopy(timeSchedule))
+    newRequests, newDoctors = planning.updateSchedule(doctorsData, requestsData, scheduleData, nextSchedTime)
     
     timeDoctor = [dateTime.hourToInt(doctorsInfo[1][3].rstrip()),dateTime.minutesToInt(doctorsInfo[1][3].rstrip())]
     nextDoctTime = dateTime.add30Min(copy.deepcopy(timeDoctor))
@@ -53,15 +54,16 @@ def plan(doctorsFileName, scheduleFileName, requestsFileName):
     doctorsFileName = doctorsFileName.replace(f"doctors{doctorsInfo[1][3].rstrip()}.txt","")
     infoToFiles.writeDoctorsFile(newDoctors, headerDoct, f"{doctorsFileName}doctors{dateTime.intToTime(nextDoctTime[0],nextDoctTime[1])}.txt")
 
-    nextSchedTime = dateTime.add30Min(copy.deepcopy(timeSchedule))
     headerSched = infoToFiles.headerWork(requestsInfo[1])
     scheduleFileName = scheduleFileName.replace(f"schedule{scheduleInfo[1][3].rstrip()}.txt","")
     infoToFiles.writeScheduleFile(newRequests, headerSched, f"{scheduleFileName}schedule{dateTime.intToTime(nextSchedTime[0],nextSchedTime[1])}.txt")
 
 #plan(sys.argv[1],sys.argv[2],sys.argv[3])
-
-
-fileNameDoctors = "/home/guimbreon/Desktop/Trabalho/testeMeu/doctors16h00.txt"
-fileNameRequests = "/home/guimbreon/Desktop/Trabalho/testeMeu/requests16h30.txt"
-fileNameSchedule = "/home/guimbreon/Desktop/Trabalho/testeMeu/schedule16h00.txt"
+fileNameDoctors = "/home/guimbreon/Desktop/Trabalho/testMeu/testSet1/doctors10h00.txt"
+#fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet4/doctors18h00.txt"
+#REQUESTS
+fileNameRequests = "/home/guimbreon/Desktop/Trabalho/testMeu/testSet1/requests10h30.txt"
+#fileName = "/home/guimbreon/Desktop/Aulas/Ano1/1Sem/PI/Trabalho/testSets_v1/testSet1/requests10h30.txt"
+#SCHEDULE
+fileNameSchedule = "/home/guimbreon/Desktop/Trabalho/testMeu/testSet1/schedule10h00.txt"
 plan(fileNameDoctors,fileNameSchedule,fileNameRequests)
