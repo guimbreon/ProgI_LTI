@@ -52,7 +52,7 @@ def writeScheduleFile(sched, header, fileName):
     fp = open(fileName,'w')
     fp.write(header)
     for item in sched:
-        fp.write(f"{dateTime.intToTime(item[REQ_TIME_IDK][0],item[REQ_TIME_IDK][1])}, {item[REQ_MOTH_IDK]},{item[REQ_DOC_IDK]}\n")
+        fp.write(f"{dateTime.intToTime(item[REQ_TIME_IDX][0],item[REQ_TIME_IDX][1])}, {item[REQ_MOTH_IDX]}, {item[REQ_DOC_IDX]}\n")
 
     fp.close()
 def writeDoctorsFile(doctors, header, fileName):
@@ -75,6 +75,6 @@ def writeDoctorsFile(doctors, header, fileName):
     fp = open(fileName,'w')
     fp.write(header)
     for item in doctors:
-        fp.write(f"{item[DOCT_NAME_IDX]}, {item[DOCT_CAT_IDX]}, {dateTime.intToTime(item[DOCT_TIME_IDK][0],item[DOCT_TIME_IDK][1])}, {item[DOCT_MINS_IDX]}, {dateTime.intToTime(item[DOCT_TOTALTIME_IDX][0],item[DOCT_TOTALTIME_IDX][1])}\n")
+        fp.write(f"{item[DOCT_NAME_IDX]}, {item[DOCT_CAT_IDX]}, {dateTime.intToTime(item[DOCT_TIME_IDX][0],item[DOCT_TIME_IDX][1])}, {item[DOCT_MINS_IDX]}, {dateTime.intToTime(item[DOCT_TOTALTIME_IDX][0],item[DOCT_TOTALTIME_IDX][1])}\n")
 
     fp.close()

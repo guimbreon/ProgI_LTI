@@ -38,7 +38,7 @@ NUM_HEADER_LINES = 7
 # Index of the element with the docotor's name
 DOCT_NAME_IDX = 0
 DOCT_CAT_IDX = 1
-DOCT_TIME_IDK = 2
+DOCT_TIME_IDX = 2
 DOCT_MINS_IDX = 3
 DOCT_TOTALTIME_IDX = 4
 
@@ -46,15 +46,15 @@ DOCT_TOTALTIME_IDX = 4
 # In a mother's list:
 # Index of the element with the mother's name
 MOTH_NAME_IDX = 0
-MOTH_AGE_IDK = 1
-MOTH_WRIST_IDK = 2
-MOTH_IMP_IDK = 3
+MOTH_AGE_IDX = 1
+MOTH_WRIST_IDX = 2
+MOTH_IMP_IDX = 3
 
 
 # In a schedule's list:
 # Index of the element with the schedule's name
-REQ_TIME_IDK = 0
-REQ_MOTH_IDK = 1
-REQ_DOC_IDK = 2
+REQ_TIME_IDX = 0
+REQ_MOTH_IDX = 1
+REQ_DOC_IDX = 2
 
 

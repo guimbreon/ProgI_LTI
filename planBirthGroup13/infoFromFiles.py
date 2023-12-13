@@ -60,12 +60,12 @@ def sortDoctor(doctors):
     doneWorking = []
     working = []
     for doctor in doctors:
-        if doctor[DOCT_TIME_IDK] == "weekly leave":
+        if doctor[DOCT_TIME_IDX] == "weekly leave":
             doneWorking.append(doctor)
         else:
             working.append(doctor)
 
-    finalDoctors = sorted(working, key=lambda x: (int(x[DOCT_TIME_IDK][0]),int(x[DOCT_TIME_IDK][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
+    finalDoctors = sorted(working, key=lambda x: (int(x[DOCT_TIME_IDX][0]),int(x[DOCT_TIME_IDX][1]), -int(x[DOCT_CAT_IDX]),int(x[DOCT_MINS_IDX]) , int(x[DOCT_TOTALTIME_IDX][0]), int(x[DOCT_TOTALTIME_IDX][1]), x[DOCT_NAME_IDX]))
     if len(doneWorking) > 0:
         doneWorking = sorted(doneWorking, key = lambda doctor: (-int(doctor[DOCT_CAT_IDX]),int(doctor[DOCT_MINS_IDX]) , int(doctor[DOCT_TOTALTIME_IDX][0]), int(doctor[DOCT_TOTALTIME_IDX][1]), doctor[DOCT_NAME_IDX]))
         finalDoctors += doneWorking
@@ -102,21 +102,21 @@ def sortRequests(requestsData):
     """
     newList = []
     for item in requestsData:
-        if item[MOTH_WRIST_IDK] == "green":
-            item[MOTH_WRIST_IDK] = 1
-        elif item[MOTH_WRIST_IDK] == "yellow":
-            item[MOTH_WRIST_IDK] = 2
+        if item[MOTH_WRIST_IDX] == "green":
+            item[MOTH_WRIST_IDX] = 1
+        elif item[MOTH_WRIST_IDX] == "yellow":
+            item[MOTH_WRIST_IDX] = 2
         else:
-            item[MOTH_WRIST_IDK] = 3
+            item[MOTH_WRIST_IDX] = 3
 
-        if item[MOTH_IMP_IDK] == "low":
-            item[MOTH_IMP_IDK] = 1
-        elif item[MOTH_IMP_IDK] == "medium":
-            item[MOTH_IMP_IDK] = 2
+        if item[MOTH_IMP_IDX] == "low":
+            item[MOTH_IMP_IDX] = 1
+        elif item[MOTH_IMP_IDX] == "medium":
+            item[MOTH_IMP_IDX] = 2
         else:
-            item[MOTH_IMP_IDK] = 3
+            item[MOTH_IMP_IDX] = 3
         newList.append(item)
-    requestsData = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDK]),-int(x[MOTH_WRIST_IDK]),-int(x[MOTH_AGE_IDK]),x[MOTH_NAME_IDX]))
+    requestsData = sorted(newList,key=lambda x: (-int(x[MOTH_IMP_IDX]),-int(x[MOTH_WRIST_IDX]),-int(x[MOTH_AGE_IDX]),x[MOTH_NAME_IDX]))
     return requestsData
 
 def readRequestsFile(fileName):

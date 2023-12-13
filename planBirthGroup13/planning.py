@@ -41,19 +41,19 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 		docNum = 0
 		isItNotTreated = True
 		for medic in doctors:
-			if medic[DOCT_TIME_IDK] != "weekly leave":
-				if medic[DOCT_TIME_IDK][0] <= schedule[0] and medic[DOCT_TIME_IDK][1] < schedule[1] and isItNotTreated:
-					medic[DOCT_TIME_IDK] = copy.deepcopy(schedule)
+			if medic[DOCT_TIME_IDX] != "weekly leave":
+				if medic[DOCT_TIME_IDX][0] <= schedule[0] and medic[DOCT_TIME_IDX][1] < schedule[1] and isItNotTreated:
+					medic[DOCT_TIME_IDX] = copy.deepcopy(schedule)
 				copiedmedic = copy.deepcopy(medic)
 				copiedmedic = dateTime.add20Min(copiedmedic)
 				if copiedmedic != medic: 
-					if ((int(mother[MOTH_IMP_IDK]) == 3 and int(medic[DOCT_CAT_IDX]) > 1) or (int(mother[MOTH_IMP_IDK]) < 3)) and isItNotTreated:
+					if ((int(mother[MOTH_IMP_IDX]) == 3 and int(medic[DOCT_CAT_IDX]) > 1) or (int(mother[MOTH_IMP_IDX]) < 3)) and isItNotTreated:
 						isItNotTreated = False
-						timeBegin = copy.deepcopy(medic[DOCT_TIME_IDK])
+						timeBegin = copy.deepcopy(medic[DOCT_TIME_IDX])
 						medicName = copy.deepcopy(medic[DOCT_NAME_IDX])
-						print(medic)
+						
 						medic = dateTime.add20Min(medic)
-						print(medic)
+
 						doctors.pop(docNum)
 						doctors.append(medic)
 						doctors = infoFromFiles.sortDoctor(doctors)
