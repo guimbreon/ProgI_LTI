@@ -1,5 +1,3 @@
-#-*- coding: utf-8 -*-
-
 # 2023-2024 Programação 1 (LTI)
 # Grupo 13
 #62372 Guilherme Soares
@@ -82,7 +80,8 @@ def readDoctorsFile(fileName):
     Ensures:
     list of lists where each list corresponds to a doctor listed in
     the file fileName (with all the info pieces belonging to that doctor),
-    following the order provided in the lines of the file.
+    following the order provided in the lines of the file 
+    and the file information.
     """
     doctorsData,fileInfo = readFile(fileName)
     if fileInfo[FILETYPE] != "Doctors:":
@@ -128,7 +127,8 @@ def readRequestsFile(fileName):
     Requires:
     list of lists where each list corresponds to a Mothers listed in
     the file fileName (with all the info pieces belonging to that doctor),
-    following the order provided in the lines of the file.
+    following the order provided in the lines of the file
+    and the file information.
     """
     requestsData,fileInfo = readFile(fileName)
     if fileInfo[FILETYPE] != "Mothers:":
@@ -145,7 +145,8 @@ def readScheduleFile(fileName):
     Requires:
     list of lists where each list corresponds to a Mothers listed in
     the file fileName (with all the info pieces belonging to that doctor),
-    following the order provided in the lines of the file.
+    following the order provided in the lines of the file
+    and the file information.
     """
     scheduleData,fileInfo = readFile(fileName)
     if fileInfo[FILETYPE] != "Schedule:":

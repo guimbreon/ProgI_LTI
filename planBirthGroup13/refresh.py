@@ -1,5 +1,3 @@
-#-*- coding: utf-8 -*-
-
 # 2023-2024 Programação 1 (LTI)
 # Grupo 13
 #62372 Guilherme Soares
@@ -10,12 +8,6 @@ import dateTime
 import planning
 import copy
 import sys
-"""
-COLOCAR AQUI O ARGV E ASSIM
-
-TEMOS Q COLOCAR NO FIM DO FICHEIRO TIPO
-updateSchedule(argv[1],argv[2]) OU SEJA LÁ CM É UK
-"""
 
 def plan(doctorsFileName, scheduleFileName, requestsFileName):
     """
@@ -39,21 +31,23 @@ def plan(doctorsFileName, scheduleFileName, requestsFileName):
     scheduleFileName and requestsFileName, and are written in the same directory
     of the latter.
     """
+    #Reading the data
     doctorsData, doctorsInfo = infoFromFiles.readDoctorsFile(doctorsFileName)
     requestsData, requestsInfo = infoFromFiles.readRequestsFile(requestsFileName)
     scheduleData, scheduleInfo = infoFromFiles.readScheduleFile(scheduleFileName)
-
+    
+    #Updating times and getting the new schedule and new doctors list
     timeSchedule = [dateTime.hourToInt(scheduleInfo[1][3].rstrip()),dateTime.minutesToInt(scheduleInfo[1][3].rstrip())]
     nextSchedTime = dateTime.add30Min(copy.deepcopy(timeSchedule))
     newRequests, newDoctors = planning.updateSchedule(doctorsData, requestsData, scheduleData, nextSchedTime)
     
     timeDoctor = [dateTime.hourToInt(doctorsInfo[1][3].rstrip()),dateTime.minutesToInt(doctorsInfo[1][3].rstrip())]
     nextDoctTime = dateTime.add30Min(copy.deepcopy(timeDoctor))
-
+    #getting the new header
     headerDoct = infoToFiles.headerWork(doctorsInfo[1])
     doctorsFileName = doctorsFileName.replace(f"doctors{doctorsInfo[1][3].rstrip()}.txt","")
     infoToFiles.writeDoctorsFile(newDoctors, headerDoct, f"{doctorsFileName}doctors{dateTime.intToTime(nextDoctTime[0],nextDoctTime[1])}.txt")
-
+    #writing the final files.
     headerSched = infoToFiles.headerWork(requestsInfo[1])
     scheduleFileName = scheduleFileName.replace(f"schedule{scheduleInfo[1][3].rstrip()}.txt","")
     infoToFiles.writeScheduleFile(newRequests, headerSched, f"{scheduleFileName}schedule{dateTime.intToTime(nextSchedTime[0],nextSchedTime[1])}.txt")

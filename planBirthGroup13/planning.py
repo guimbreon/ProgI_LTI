@@ -1,5 +1,3 @@
-#-*- coding: utf-8 -*-
-
 # 2023-2024 Programação 1 (LTI)
 # Grupo 13
 #62372 Guilherme Soares
@@ -10,6 +8,14 @@ import copy
 import infoFromFiles
 import dateTime
 def sortSchedule(schedule):
+	"""
+	Sort a schedule list.
+
+    Requires:
+    - schedule (lst)(lst) : contains a list of lists where each list  corresponds to an apointment.
+    Ensures:
+    New schedule list but now is sorted the given arguments.
+	"""
 	return sorted(schedule, key = lambda sched: (sched[0][0],sched[0][1]))
 
 def updateSchedule(doctors, requests, previousSched, nextSched):
@@ -29,19 +35,20 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 	a list of birth assistances, representing the schedule updated at
 	the current update time (= previous update time + 30 minutes),
 	assigned according to the conditions indicated in the general specification
-	of the project (omitted here for the sake of readability).
+	of the project (omitted here for the sake of readability) and
+	a list of doctors with their times updated after being sorted for a given birth.
 	"""
 	newRequests = []
 	for sched in previousSched:
 		if sched[0][0] == nextSched[0] and sched[0][1] >= nextSched[1] or sched[0][0] > nextSched[0]:
 			
 			newRequests.append(sched)
-	schedule = copy.deepcopy(nextSched)
+	schedule = copy.deepcopy(nextSched) #deepcopy so that the list can't be changed.
 	for mother in requests:
 		docNum = 0
 		isItNotTreated = True
 		for medic in doctors:
-			if medic[DOCT_TIME_IDX] != "weekly leave":
+			if medic[DOCT_TIME_IDX] != "weekly leave": # if the "time" section of the given medic list is "weekly leave" it means it's not available to work anymore.
 				if medic[DOCT_TIME_IDX][0] <= schedule[0] and medic[DOCT_TIME_IDX][1] < schedule[1] and isItNotTreated:
 					medic[DOCT_TIME_IDX] = copy.deepcopy(schedule)
 				copiedmedic = copy.deepcopy(medic)
@@ -59,7 +66,7 @@ def updateSchedule(doctors, requests, previousSched, nextSched):
 						doctors = infoFromFiles.sortDoctor(doctors)
 						newRequests.append([timeBegin,mother[MOTH_NAME_IDX],medicName])
 			docNum += 1
-		if isItNotTreated:
+		if isItNotTreated: #if the respective mother is not assigned to any doctor, it'll be redirected to other network.
 			timeBegin = nextSched
 			newRequests.append([timeBegin,mother[MOTH_NAME_IDX],"redirected to other network"])
 		

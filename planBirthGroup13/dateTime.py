@@ -1,5 +1,3 @@
-#-*- coding: utf-8 -*-
-
 # 2023-2024 Programação 1 (LTI)
 # Grupo 13
 # 62372 Guilherme Soares
@@ -95,7 +93,7 @@ def add30Min(oldSched):
     Requires:
     - oldSched (lst) : a lst cointaing the time of the previous sched
     Ensures:
-    The given time plus 30minus for the oldSched
+    The given time plus 30 minutes for the oldSched
     """
     oldSched[1] += 30
     if oldSched[1] >= 60:
@@ -111,7 +109,7 @@ def add20Min(doctor):
     Requires
     - doctor (lst): representing a doctor
     Ensures:
-    - new doctor list with + 20 minutes
+    - new doctor list with 20 minutes added in the right sections of the list.
     """
     copieddoctor = copy.deepcopy(doctor)
     doctor[DOCT_MINS_IDX] = str(int(doctor[DOCT_MINS_IDX]) + 20)

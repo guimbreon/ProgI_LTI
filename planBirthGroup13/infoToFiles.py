@@ -1,5 +1,3 @@
-#-*- coding: utf-8 -*-
-
 # 2023-2024 Programação 1 (LTI)
 # Grupo 13
 #62372 Guilherme Soares
@@ -8,6 +6,14 @@ import dateTime
 from constants import * 
 
 def headerWork(header):
+    """
+    Transforms the old header into a new header.
+
+    Requires:
+    - header that represents a header of a given file.
+    Ensures:
+    - new header for a given file, adding the time that is required.
+    """
     lineNum = 0
     nextDay = False
     headerString = ""
