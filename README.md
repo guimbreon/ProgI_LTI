@@ -43,8 +43,8 @@ O software é composto pelos seguintes módulos:
 
 ## Contribuidores
 
-- [Guilherme Soares](github.com/guimbreon)
-- [Duarte Soares](github.com/fareskk)
+- [Guilherme Soares](https://github.com/guimbreon)
+- [Duarte Soares](https://github.com/fareskk)
 
 ## Relatório de Implementação
 
