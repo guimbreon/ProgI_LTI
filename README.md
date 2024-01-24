@@ -1,5 +1,6 @@
 # Projeto birthPlan
 
+This README is also available in english. Click [here](READMEING.md)
 ## Contexto
 
 O projeto birthPlan surge no contexto do curso de Programação 1 (LTI) do Departamento de Informática da Faculdade de Ciências de Lisboa, no ano letivo 2023/2024. Este projeto tem como objetivo desenvolver uma aplicação em Python 3 chamada birthPlan, que visa melhorar a organização e otimizar os recursos dos serviços de maternidade de um grupo de hospitais.
